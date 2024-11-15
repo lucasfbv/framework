@@ -50,7 +50,7 @@ function step() {
                     let neighborCol = col + j;
 
                     // Check if the neighbor is within bounds of the grid
-                    // Remember that the board loops around, meaning if it's out of bounds you need to wrap the position around, back im bounds.
+                    // Remember that the board loops around, meaning if it's out of bounds you need to wrap the position around, back in bounds.
                     // The lines below do not do this...
                     // You'd be better off checking to see if each coord is out of bounds forst, wrapping it if so, and then finally once both coords as validated increment aliveNeighbours as needed.
                     if (neighborRow >= 0 && neighborRow < gridMaxRows && neighborCol >= 0 && neighborCol < gridMaxColumns) {
