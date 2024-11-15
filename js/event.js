@@ -13,3 +13,8 @@ canvaBoard.addEventListener('click', function (e) {
     array[row][col] = !array[row][col];
 
 });
+
+// Toggle bool on button click
+startandstopBtn.AddEventListener("click", () => {
+    play = !play;
+});
