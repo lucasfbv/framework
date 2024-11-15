@@ -18,3 +18,8 @@ canvaBoard.addEventListener('click', function (e) {
 startandstopBtn.AddEventListener("click", () => {
     play = !play;
 });
+
+// Step Button, steps only once
+stepBtn.AddEventListener("click", () => {
+    step();
+});
