@@ -1,0 +1,2 @@
+setInterval(animate, 50);
+

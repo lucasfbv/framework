@@ -1,0 +1,87 @@
+:root {
+	/* ADD VARIABLES */
+
+	--headercolor: blue;
+	--headertextcolor: #fff;
+	--border: 3px solid #000;
+	--buttonbgcolor: lightgrey;
+	--containerbgcolor: beige;
+	--buttonborderradius: 5px;
+
+}
+
+body {
+	font-size: 100%;
+	/* ADD DEFAULT FONT */
+
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0px auto;
+	padding: 0px 10px;
+	background-color: var(--containerbgcolor);
+}
+
+header {
+	background-color: var(--headercolor);
+	color: var(--headertextcolor);
+	margin: 0 -10px;
+	padding: 1rem 1.2rem;
+	font-family: "Press Start 2P", system-ui;
+}
+
+button,
+canvas {
+	border: var(--border);
+}
+
+button {
+	border-radius: var(--buttonborderradius);
+}
+
+canvas {
+	margin: 0 auto;
+	display: block;
+	width: 750px;
+	height: 500px;
+}
+
+#save,
+#load {
+	padding: 1rem;
+	margin: 20px 0;
+}
+
+.startandload {
+	display: flex;
+	justify-content: center;
+	gap: 5%;
+}
+
+.otherbuttons {
+	display: flex;
+	justify-content: center;
+	gap: 10%;
+	font-size: 20px;
+}
+
+.otherbuttons button {
+	margin: 20px 0;
+	width: 50px;
+	height: 50px;
+}
+
+#start-stop,
+#step {
+	font-size: 30px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	/* ADD HEADING FONT */
+}
