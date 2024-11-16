@@ -27,6 +27,5 @@ stepBtn.AddEventListener("click", () => {
 // Clear Button
 clearBtn.AddEventListener("click", () => {
     play = false;
-    
     // Loop through grid and make all values false.
 });

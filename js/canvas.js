@@ -42,40 +42,29 @@ function step() {
             // This exact double for-loop is used quite often when looking for neighbours.
             for (let i = -1; i <= 1; i++) {
                 for (let j = -1; j <= 1; j++) {
-                    // Yes, below works but it's typically considered bad practice to use continue.
-                    if (i === 0 && j === 0) continue; //when i === 0 && j === 0, the continue statement is used to skip over the current cell and avoid checking its neighbors.
+                    if (i !== 0 && j !== 0) {
 
-                    // This is where the modification from above is being applied.
-                    let neighborRow = row + i;
-                    let neighborCol = col + j;
+                        let neighborRow = row + i;
+                        let neighborCol = col + j;
 
-                    // Check if the neighbor is within bounds of the grid*
-                    // Remember that the board loops around, meaning if it's out of bounds you need to wrap the position around, back in bounds.
-                    // The lines below do not do this...
-                    // You'd be better off checking to see if each coord is out of bounds first, wrapping it if so, and then finally once both coords are validated increment aliveNeighbours as needed.
-                    if (neighborRow >= 0 && neighborRow < gridMaxRows && neighborCol >= 0 && neighborCol < gridMaxColumns) {
-                        aliveNeighbors += cloneGrid[neighborRow][neighborCol] ? 1 : 0; //If the neighbor is alive add 1, otherwise add 0.
+                        // Wrap the row and column around if out of bounds
+                        neighborRow = (neighborRow + gridMaxRows) % gridMaxRows;
+                        neighborCol = (neighborCol + gridMaxColumns) % gridMaxColumns;
+
+                        // Add to aliveNeighbors if the neighbor is alive
+                        aliveNeighbors += cloneGrid[neighborRow][neighborCol] ? 1 : 0;
+
                     }
                 }
-            }
 
-            // Rule 1 and Rule 3: Any live cell with fewer than 2 or more than 3 live neighbors dies.
-            // The === operator takes data types into consideration, so something like 5 === "5" will always be false.
-            // Make sure that when you use that operator you're using the right data type. Otherwise, use the == operator which ignores data types.
-            if (cloneGrid[row][col] === true) {
-                // This works but you don't need both if statements here.
-                // An alive cell will stay alive if you don't modify it.
-                if (aliveNeighbors < 2 || aliveNeighbors > 3) {
-                    array[row][col] = false; // Again, be mindful of data types
-                } // Rule 2: Any live cell with exactly 2 or 3 live neighbors survives
-                // This else-if can go. No need to set true to true.
-                else if (aliveNeighbors === 2 || aliveNeighbors === 3) {
-                    array[row][col] = true; // Data types
-                }
-              } else {
-                // Rule 4: Any dead cell with exactly 3 live neighbors becomes a live cell
-                if (aliveNeighbors === 3) {
-                    array[row][col] = true; // Data types...
+                if (cloneGrid[row][col] && (aliveNeighbors < 2 || aliveNeighbors > 3)) {  // Rule 1 and Rule 3: Any live cell with fewer than 2 or more than 3 live neighbors dies.
+                    array[row][col] = false;
+                } else if (!cloneGrid[row][col] && aliveNeighbors === 3) { // Rule 2: Any live cell with exactly 2 or 3 live neighbors survives
+                    array[row][col] = true;
+                } else { // Rule 4: Any dead cell with exactly 3 live neighbors becomes a live cell
+                    if (aliveNeighbors === 3) {
+                        array[row][col] = true; 
+                    }
                 }
             }
         }
