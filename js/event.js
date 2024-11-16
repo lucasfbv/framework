@@ -13,3 +13,20 @@ canvaBoard.addEventListener('click', function (e) {
     array[row][col] = !array[row][col];
 
 });
+
+// Toggle bool on button click
+startandstopBtn.AddEventListener("click", () => {
+    play = !play;
+});
+
+// Step Button, steps only once
+stepBtn.AddEventListener("click", () => {
+    step();
+});
+
+// Clear Button
+clearBtn.AddEventListener("click", () => {
+    play = false;
+    
+    // Loop through grid and make all values false.
+});

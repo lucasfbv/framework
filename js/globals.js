@@ -15,3 +15,6 @@ const array = new Array(gridMaxRows);
 for (let i = 0; i < gridMaxRows; i++) {
     array[i] = new Array(gridMaxColumns).fill(false);
 }
+
+// Bool For Playing Steps, false by default
+let play = false;
