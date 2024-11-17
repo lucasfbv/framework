@@ -57,14 +57,13 @@ function step() {
                     }
                 }
 
-                if (cloneGrid[row][col] && (aliveNeighbors < 2 || aliveNeighbors > 3)) {  // Rule 1 and Rule 3: Any live cell with fewer than 2 or more than 3 live neighbors dies.
-                    array[row][col] = false;
-                } else if (!cloneGrid[row][col] && aliveNeighbors === 3) { // Rule 2: Any live cell with exactly 2 or 3 live neighbors survives
-                    array[row][col] = true;
-                } else { // Rule 4: Any dead cell with exactly 3 live neighbors becomes a live cell
-                    if (aliveNeighbors === 3) {
-                        array[row][col] = true; 
-                    }
+                if (cloneGrid[row][col]) {
+                    // Rule 1 / 3: Any live cell with fewer than 2 or more than 3 live neighbors dies (underpopulation or overpopulation).
+                    // Rule 2: Any live cell with 2 or 3 live neighbors survives.
+                    array[row][col] = (aliveNeighbors < 2 || aliveNeighbors > 3) ? false : true;
+                } else {
+                    // Rule 4: Any dead cell with exactly 3 live neighbors becomes a live cell (reproduction).
+                    array[row][col] = (aliveNeighbors === 3) ? true : false;
                 }
             }
         }
