@@ -18,3 +18,4 @@ for (let i = 0; i < gridMaxRows; i++) {
 
 // Bool For Playing Steps, false by default
 let play = false;
+let frame = 0;

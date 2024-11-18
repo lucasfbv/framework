@@ -15,17 +15,30 @@ canvaBoard.addEventListener('click', function (e) {
 });
 
 // Toggle bool on button click
-startandstopBtn.AddEventListener("click", () => {
+startandstopBtn.addEventListener("click", (e) => {
     play = !play;
+    if(play) {
+        startandstopBtn.style.borderColor = "red";
+        startandstopBtn.style.color = "red";
+    } else {
+        startandstopBtn.style.borderColor = "black";
+        startandstopBtn.style.color = "black";
+    }
 });
 
 // Step Button, steps only once
-stepBtn.AddEventListener("click", () => {
+stepBtn.addEventListener("click", () => {
     step();
 });
 
 // Clear Button
-clearBtn.AddEventListener("click", () => {
+clearBtn.addEventListener("click", () => {
+
     play = false;
-    // Loop through grid and make all values false.
+    for(let i = 0; i < gridMaxRows; i++){
+        for(let j = 0; j < gridMaxColumns; j++) {
+            array[i][j] = false;
+        }
+    }
+
 });

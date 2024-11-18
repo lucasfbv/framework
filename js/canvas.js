@@ -21,16 +21,16 @@ function animate() {
     }
 
     // Animation should only play when play button is pressed.
-    if (play) {
+    if (play && frame % 5 == 0) {
         step();
-    }
+    } 
+    frame++;
 }
 
 function step() {
 
     // What you had works but you were technically mapping the columns, not rows.
     let cloneGrid = array.map(col => col.slice()); //create a copy of an array columns*.
-
     for (let row = 0; row < gridMaxRows; row++) {
         for (let col = 0; col < gridMaxColumns; col++) {
             let aliveNeighbors = 0;
@@ -42,30 +42,41 @@ function step() {
             // This exact double for-loop is used quite often when looking for neighbours.
             for (let i = -1; i <= 1; i++) {
                 for (let j = -1; j <= 1; j++) {
-                    if (i !== 0 && j !== 0) {
 
-                        let neighborRow = row + i;
-                        let neighborCol = col + j;
+                    if(i == 0 && j == 0) continue;
 
-                        // Wrap the row and column around if out of bounds
-                        neighborRow = (neighborRow + gridMaxRows) % gridMaxRows;
-                        neighborCol = (neighborCol + gridMaxColumns) % gridMaxColumns;
+                    let neighborRow = row + i;
+                    let neighborCol = col + j;
 
-                        // Add to aliveNeighbors if the neighbor is alive
-                        aliveNeighbors += cloneGrid[neighborRow][neighborCol] ? 1 : 0;
+                    if (neighborRow < 0) {
+                        neighborRow += gridMaxRows;
+                    } else if (neighborRow >= gridMaxRows) {
+                        neighborRow -= gridMaxRows;
+                    }
+                    if (neighborCol < 0) {
+                        neighborCol += gridMaxColumns;
+                    } else if (neighborCol >= gridMaxColumns) {
+                        neighborCol -= gridMaxColumns;
+                    }
 
+                    // Add to aliveNeighbors if the neighbor is alive
+                    if (cloneGrid[neighborRow][neighborCol]) {
+                        aliveNeighbors++;
                     }
                 }
-
-                if (cloneGrid[row][col]) {
-                    // Rule 1 / 3: Any live cell with fewer than 2 or more than 3 live neighbors dies (underpopulation or overpopulation).
-                    // Rule 2: Any live cell with 2 or 3 live neighbors survives.
-                    array[row][col] = (aliveNeighbors < 2 || aliveNeighbors > 3) ? false : true;
-                } else {
-                    // Rule 4: Any dead cell with exactly 3 live neighbors becomes a live cell (reproduction).
-                    array[row][col] = (aliveNeighbors === 3) ? true : false;
-                }
             }
+
+            // Rule 1 / 3: Any live cell with fewer than 2 or more than 3 live neighbors dies (underpopulation or overpopulation).
+            // Rule 2: Any live cell with 2 or 3 live neighbors survives.
+            if (cloneGrid[row][col] && (aliveNeighbors < 2 || aliveNeighbors > 3)) {
+                array[row][col] = false;
+                // Rule 4: Any dead cell with exactly 3 live neighbors becomes a live cell (reproduction).
+            } else if (!cloneGrid[row][col] && aliveNeighbors == 3) {
+                array[row][col] = true;
+            }
+
         }
     }
+
 }
+
