@@ -15,7 +15,7 @@ canvaBoard.addEventListener('click', function (e) {
 });
 
 // Toggle bool on button click
-startandstopBtn.addEventListener("click", (e) => {
+startandstopBtn.addEventListener("click", () => {
     play = !play;
     if(play) {
         startandstopBtn.style.borderColor = "red";

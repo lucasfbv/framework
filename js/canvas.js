@@ -24,6 +24,7 @@ function animate() {
     if (play && frame % 5 == 0) {
         step();
     } 
+    
     frame++;
 }
 
