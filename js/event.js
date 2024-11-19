@@ -17,12 +17,12 @@ canvaBoard.addEventListener('click', function (e) {
 // Toggle bool on button click
 startandstopBtn.addEventListener("click", () => {
     play = !play;
-    if(play) {
-        startandstopBtn.style.borderColor = "red";
-        startandstopBtn.style.color = "red";
+    if (play) {
+        startandstopBtn.style.backgroundColor = "red";
+        startandstopBtn.innerText = "STOP";
     } else {
-        startandstopBtn.style.borderColor = "black";
-        startandstopBtn.style.color = "black";
+        startandstopBtn.style.backgroundColor = "#00a800";
+        startandstopBtn.innerText = "START";
     }
 });
 
@@ -35,10 +35,13 @@ stepBtn.addEventListener("click", () => {
 clearBtn.addEventListener("click", () => {
 
     play = false;
-    for(let i = 0; i < gridMaxRows; i++){
-        for(let j = 0; j < gridMaxColumns; j++) {
+    for (let i = 0; i < gridMaxRows; i++) {
+        for (let j = 0; j < gridMaxColumns; j++) {
             array[i][j] = false;
         }
     }
+
+    startandstopBtn.style.backgroundColor = "#00a800";
+    startandstopBtn.innerText = "START";
 
 });

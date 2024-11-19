@@ -23,8 +23,8 @@ function animate() {
     // Animation should only play when play button is pressed.
     if (play && frame % 5 == 0) {
         step();
-    } 
-    
+    }
+
     frame++;
 }
 
@@ -44,7 +44,7 @@ function step() {
             for (let i = -1; i <= 1; i++) {
                 for (let j = -1; j <= 1; j++) {
 
-                    if(i == 0 && j == 0) continue;
+                    if (i == 0 && j == 0) continue;
 
                     let neighborRow = row + i;
                     let neighborCol = col + j;
